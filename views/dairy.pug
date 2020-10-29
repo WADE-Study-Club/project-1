@@ -1,0 +1,42 @@
+extends layouts/main
+
+block content
+  .flex-wrapper
+    .single-chart
+      svg.circular-chart.orange(viewbox='0 0 36 36')
+        path.circle-bg(d='M18 2.0845\
+        a 15.9155 15.9155 0 0 1 0 31.831\
+        a 15.9155 15.9155 0 0 1 0 -31.831')
+        path.circle(stroke-dasharray='30, 100' d='M18 2.0845\
+        a 15.9155 15.9155 0 0 1 0 31.831\
+        a 15.9155 15.9155 0 0 1 0 -31.831')
+        text.percentage(x='18' y='20.35') 30%
+      .donut--chart__name SLEEP
+    .single-chart
+      svg.circular-chart.green(viewbox='0 0 36 36')
+        path.circle-bg(d='M18 2.0845\
+        a 15.9155 15.9155 0 0 1 0 31.831\
+        a 15.9155 15.9155 0 0 1 0 -31.831')
+        path.circle(stroke-dasharray='10, 100' d='M18 2.0845\
+        a 15.9155 15.9155 0 0 1 0 31.831\
+        a 15.9155 15.9155 0 0 1 0 -31.831')
+        text.percentage(x='18' y='20.35') 60%
+      .donut--chart__name STUDY
+    .single-chart
+      svg.circular-chart.blue(viewbox='0 0 36 36')
+        path.circle-bg(d='M18 2.0845\
+        a 15.9155 15.9155 0 0 1 0 31.831\
+        a 15.9155 15.9155 0 0 1 0 -31.831')
+        path.circle(stroke-dasharray='100, 100' d='M18 2.0845\
+        a 15.9155 15.9155 0 0 1 0 31.831\
+        a 15.9155 15.9155 0 0 1 0 -31.831')
+        text.percentage(x='18' y='20.35') 90%
+      .donut--chart__name CODING
+  .todoList
+    ul
+      each todo in todos
+        li= todo.title
+      
+
+
+  
