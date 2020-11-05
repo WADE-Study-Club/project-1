@@ -101,9 +101,125 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_styles_scss__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _todopage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todopage */ "./assets/js/todopage.js");
+/* harmony import */ var _todopage__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_todopage__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
+
+
+/***/ }),
+
+/***/ "./assets/js/todopage.js":
+/*!*******************************!*\
+  !*** ./assets/js/todopage.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// select the element
+var lists = document.querySelector('.to-do_container');
+var toDoForm = document.querySelector('.to-do_left_input');
+var toDoInput = document.querySelector('.to-do_left_input_text'); // classes names
+
+var CHECK = "fas";
+var UNCHECK = "far";
+var LINE_THROUGH = "lineThrough"; // variables
+
+var LIST = []; // add an item to the list(click button or enter key)
+
+toDoForm.addEventListener("submit", handleSubmit);
+toDoInput.addEventListener("keyup", function (event) {
+  if (event.keycode == 13) {
+    handleSubmit(event);
+  }
+});
+
+function handleSubmit(event) {
+  event.preventDefault();
+  var currentValue = toDoInput.value;
+  var id = Math.random();
+
+  if (currentValue) {
+    LIST.push({
+      name: currentValue,
+      id: id,
+      done: false
+    });
+    addToDo(currentValue, id);
+    toDoInput.value = "";
+  }
+} // add to do function
+
+
+function addToDo(toDo, id) {
+  var position = "beforeend";
+  var item = "\n    <li class=\"to-do_left_lists\" id=\"".concat(id, "\">\n        <div class=\"to-do_left_lists_main\">\n            <i class=\"").concat(UNCHECK, " fa-check-square\" id=\"checkBox\"></i>\n            <span class=\"to-do_header\">").concat(toDo, "</span>\n            <i class=\"fas fa-times\" id=\"deleteBtn\"></i>\n        </div>\n        <span class=\"to-do_left_lists_link\">\uC5F0\uB3D9\uD558\uAE30</span>\n        <input type=\"checkbox\" class=\"option_check_btn\" id=\"link\"/>\n    </li>\n    ");
+  lists.insertAdjacentHTML(position, item);
+} // handle click evevt
+
+
+lists.addEventListener("click", function (event) {
+  var element = event.target;
+  var elementId = element.attributes.id;
+
+  if (elementId == null) {
+    return;
+  }
+
+  if (elementId.value == "checkBox") {
+    completeToDo(element);
+  } else if (elementId.value == "deleteBtn") {
+    removeToDo(element);
+  } else if (elementId.value == "link") {
+    checkOptions(element);
+  }
+}); // complete to do
+
+function completeToDo(element) {
+  // check box
+  element.classList.toggle(CHECK);
+  element.classList.toggle(UNCHECK); // 취소선
+
+  var toDoHeader = element.nextElementSibling;
+  toDoHeader.classList.toggle(LINE_THROUGH); // LIST update
+
+  var list = element.parentNode.parentNode;
+  var listId = list.id;
+  var index = LIST.findIndex(function (element) {
+    return element.id == listId;
+  });
+  LIST[index].done = true;
+} // remove to do
+
+
+function removeToDo(element) {
+  var lists = element.parentNode.parentNode.parentNode;
+  var list = element.parentNode.parentNode;
+  var listId = list.id;
+  var index = LIST.findIndex(function (element) {
+    return element.id == listId;
+  }); // LIST update
+
+  LIST.splice(index, 1);
+  lists.removeChild(list);
+} // check options
+
+
+function checkOptions(element) {
+  var toDoList = element.parentNode;
+  var optionCheckBtn = toDoList.querySelector(".option_check_btn");
+  var toDoListHeader = toDoList.querySelector(".to-do_left_lists_main");
+  var options = toDoList.querySelector(".to-do_left_lists_options");
+  var position = "afterend";
+  var item = "\n    <form class=\"to-do_left_lists_options\">\n    <label for=\"index-color\" class=\"to-do_left_lists_options_color\">\uC0C9 \uC9C0\uC815</label>\n    <input type=\"color\" id=\"index-color\">\n    <div>\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC2DC\uC791\uC2DC\uAC04</label>\n        <input type=\"text\" class=\"to-do_left_lists_options_time\" onKeyup=\"inputTimeColon(this);\" placeholder=\"HH:MM\" maxlength=\"5\"/>\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC885\uB8CC\uC2DC\uAC04</label>\n        <input type=\"text\" class=\"to-do_left_lists_options_time\" onKeyup=\"inputTimeColon(this);\" placeholder=\"HH:MM\" maxlength=\"5\"/>\n    </div>\n    </form>\n    ";
+
+  if (optionCheckBtn.checked) {
+    toDoListHeader.insertAdjacentHTML(position, item);
+  } else {
+    options.parentNode.removeChild(options);
+  }
+} //     <progress value="22" max="100"></progress>
 
 /***/ }),
 
@@ -28064,7 +28180,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! @babel/polyfill */"./node_modules/@babel/polyfill/lib/index.js");
-module.exports = __webpack_require__(/*! C:\Users\ifjiej\Desktop\node-pug Template\assets\js\main.js */"./assets/js/main.js");
+module.exports = __webpack_require__(/*! C:\Users\ParkSeungyeon\project-1\assets\js\main.js */"./assets/js/main.js");
 
 
 /***/ })
