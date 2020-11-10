@@ -10,7 +10,9 @@ const config = {
   entry:{
     main :['@babel/polyfill', ENTRY_FILE],
     barChart :['@babel/polyfill', path.resolve(__dirname, "assets", "js", "barChart.js")],
-    donutChart: ['@babel/polyfill', path.resolve(__dirname, "assets", "js", "donutChart.js")]
+    donutChart: ['@babel/polyfill', path.resolve(__dirname, "assets", "js", "donutChart.js")],
+    colorbar: ['@babel/polyfill', path.resolve(__dirname, "assets", "js", "colorbar.js")],
+    timebar: ['@babel/polyfill', path.resolve(__dirname, "assets", "js", "timebar.js")]
 },
   mode: MODE,
   module: {

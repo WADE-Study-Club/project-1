@@ -1,0 +1,19 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Set Plan
+  link(rel='stylesheet' href='/static/styles.css')
+.setPlan
+  form(method="post" action='/setPlan')
+    input(type='text' placeholder='할 일을 입력하세요')
+    select(name='tagList' id='')
+      each todotag in todotags
+        option= todotag.tagName
+      //- option(value='study') &#xACF5;&#xBD80;
+      //- option(value='selfDevelopment') &#xC790;&#xAE30;&#xACC4;&#xBC1C;
+      //- option(value='hobby') &#xCDE8;&#xBBF8;&#xC0DD;&#xD65C;
+    //- span.tagColor
+    input.submit(type='submit' value='등록')
+script(src='/static/main.js')
+

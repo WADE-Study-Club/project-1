@@ -1,0 +1,264 @@
+.daily {
+    background-color: #F6F6F6;
+    width: 630px;
+    height: 700px;
+    border-radius: 25px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10px auto;
+    position: relative;
+}
+
+.daily .date {
+    position: absolute;
+    top: 0;
+    margin: 10px 0 10px 20px;
+}
+.daily .dateInput {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+
+}
+.daily .planner, .daily .report {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 220px;
+    height: 630px;
+    padding: 20px 0 0 0;
+}
+
+.daily .content {
+    background-color: #ffffff;
+    width: 195px;
+    height: 630px;
+    border-radius: 12px;
+}
+
+.daily .content p {
+    margin: 0;
+    padding: 0;
+}
+
+.daily .colorbar {
+    background-color: #ffffff;
+    width: 20px;
+    height: 630px;
+    border-radius: 40px;
+    margin: 0 10px;
+    position: relative;
+    padding: 0;
+    /* cursor: ns-resize; */
+    /* cursor: grab; */
+}
+.daily .colorbar .whenMouseHover {
+    display: none;
+    position: absolute;
+    pointer-events: none;
+    left: 0px;
+    top: 0px;
+    z-index: 9;
+}
+
+.daily .colorbar .whenMouseHover.showing {
+    display: inline-block;
+}
+.daily .colorbar .whenMouseHover .mouseHoverBar {
+    background-color: black;
+    position: absolute;
+    width: 19px;
+    height: 1px;
+}
+.daily .colorbar .whenMouseHover .tooltip {
+    width: 50px;
+    height: 20px;
+    background-color: blueviolet;
+    border-radius: 10px;
+    position: absolute;
+    left: -50px;
+    top: -10px;
+}
+
+
+/* .daily .colorbar:hover {
+    position: relative;
+} */
+/* .daily .colorbar:hover::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width: 19px;
+    height: 1px;
+    background-color: black;
+    z-index: 9;
+} */
+
+
+.daily .colorbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+}
+
+.daily .colorbar span.line {
+    width: 18.6px;
+    border-top: 1px dotted rgb(184, 172, 172);
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+}
+
+.daily .timebar {
+    width: 23px;
+    height: 630px;
+    padding: 20px 0 0 0;
+}
+
+.daily .timebar ul {
+    width: 23px;
+    height: 630px;
+    list-style-type: none;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* planner content 세부 항목별 */
+
+.daily .planner .content #day1_1 {
+    height: 33px;
+    line-height: 33px;
+    background-color: rgba(1, 238, 167, 0.25);
+    border-radius: 12px 12px 0 0;
+}
+.daily .planner .content #day1_2 {
+    height: 33px;
+    line-height: 33px;
+    background-color: rgba(255, 199, 105, 0.25);
+}
+.daily .planner .content #day1_3 {
+    height: 132px;
+    line-height: 132px;
+    background-color: rgba(255, 107, 212, 0.25);
+}
+.daily .planner .content #day1_4 {
+    height: 33px;
+    line-height: 33px;
+    background-color: rgba(255, 199, 105, 0.25);
+}
+.daily .planner .content #day1_5 {
+    height: 66px;
+    line-height: 66px;
+    background-color: rgba(145, 225, 225, 0.25);
+}
+.daily .planner .content #day1_6 {
+    height: 99px;
+    line-height: 99px;
+    position: relative;
+}
+.daily .planner .content #day1_6 .color-left {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    width: 90px;
+    height: 99px;
+    background-color: rgba(255, 107, 212, 0.25);
+}
+.daily .planner .content #day1_6 .color-right {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    width: 90px;
+    height: 99px;
+    background-color:rgba(145, 225, 225, 0.25);
+}
+.daily .planner .content #day1_7 {
+    height: 33px;
+    line-height: 33px;
+    background-color: rgba(255, 199, 105, 0.25);
+}
+
+/* planner colorbar 세부 항목별 */
+
+.daily .planner .colorbar li {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    width: 18.6px;
+    pointer-events: none;
+}
+.daily .planner .colorbar li#c1 {
+    top: 0;
+    height: 33px;
+    background-color: rgb(1, 238, 167);
+    border-radius: 40px 40px 0 0;
+}
+.daily .planner .colorbar li#c2 {
+    top: 34px;
+    height: 33px;
+    background-color: rgba(255, 160, 0, 0.59);
+}
+.daily .planner .colorbar #c3 {
+    height: 132px;
+    background-color: rgba(255, 0, 181, 0.58);
+}
+.daily .planner .colorbar #c4 {
+    height: 33px;
+    background-color: rgba(255, 160, 0, 0.59);
+}
+.daily .planner .colorbar #c5 {
+    height: 66px;
+    background-color: rgba(0, 255, 255, 0.43);
+}
+.daily .planner .colorbar #c6 {
+    height: 99px;
+}
+.daily .planner .colorbar #c6 .left {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    width: 10px;
+    height: 99px;
+    background-color: rgba(255, 0, 181, 0.58);
+}
+.daily .planner .colorbar #c6 .right {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    width: 10px;
+    height: 99px;
+    background-color: rgba(0, 255, 255, 0.43);
+}
+.daily .planner .colorbar #c7 {
+    height: 33px;
+    background-color: rgba(255, 160, 0, 0.59);
+}
+
+
+/* setPlan.html */
+
+.setPlan form {
+    text-align: center;
+}
+
+.setPlan form .tagColor {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    /* border: 1px black solid; */
+    background-color: cyan;
+}
+
+.setPlan form .submit {
+    margin: 20px auto ;
+    display: block;
+}

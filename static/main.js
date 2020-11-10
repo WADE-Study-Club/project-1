@@ -99,10 +99,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_index_css__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../scss/styles.scss */ "./assets/scss/styles.scss");
 /* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_scss_styles_scss__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _todopage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todopage */ "./assets/js/todopage.js");
-/* harmony import */ var _todopage__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_todopage__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _scss_dailyPageStyles_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../scss/dailyPageStyles.css */ "./assets/scss/dailyPageStyles.css");
+/* harmony import */ var _scss_dailyPageStyles_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_scss_dailyPageStyles_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _planner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./planner */ "./assets/js/planner.js");
+/* harmony import */ var _planner__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_planner__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _setPlan__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./setPlan */ "./assets/js/setPlan.js");
+/* harmony import */ var _setPlan__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_setPlan__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _tagList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tagList */ "./assets/js/tagList.js");
+
+
+
+ // import "./date";
 
 
 
@@ -110,116 +119,66 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./assets/js/todopage.js":
-/*!*******************************!*\
-  !*** ./assets/js/todopage.js ***!
-  \*******************************/
+/***/ "./assets/js/planner.js":
+/*!******************************!*\
+  !*** ./assets/js/planner.js ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// select the element
-var lists = document.querySelector('.to-do_container');
-var toDoForm = document.querySelector('.to-do_left_input');
-var toDoInput = document.querySelector('.to-do_left_input_text'); // classes names
+var planner = document.querySelector(".daily .planner"),
+    plannerContent = document.querySelector(".daily .planner .content"),
+    plannerColorbar = document.querySelector(".daily .planner .colorbar");
 
-var CHECK = "fas";
-var UNCHECK = "far";
-var LINE_THROUGH = "lineThrough"; // variables
+/***/ }),
 
-var LIST = []; // add an item to the list(click button or enter key)
-
-toDoForm.addEventListener("submit", handleSubmit);
-toDoInput.addEventListener("keyup", function (event) {
-  if (event.keycode == 13) {
-    handleSubmit(event);
-  }
-});
-
-function handleSubmit(event) {
-  event.preventDefault();
-  var currentValue = toDoInput.value;
-  var id = Math.random();
-
-  if (currentValue) {
-    LIST.push({
-      name: currentValue,
-      id: id,
-      done: false
-    });
-    addToDo(currentValue, id);
-    toDoInput.value = "";
-  }
-} // add to do function
+/***/ "./assets/js/setPlan.js":
+/*!******************************!*\
+  !*** ./assets/js/setPlan.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
 
-function addToDo(toDo, id) {
-  var position = "beforeend";
-  var item = "\n    <li class=\"to-do_left_lists\" id=\"".concat(id, "\">\n        <div class=\"to-do_left_lists_main\">\n            <i class=\"").concat(UNCHECK, " fa-check-square\" id=\"checkBox\"></i>\n            <span class=\"to-do_header\">").concat(toDo, "</span>\n            <i class=\"fas fa-times\" id=\"deleteBtn\"></i>\n        </div>\n        <span class=\"to-do_left_lists_link\">\uC5F0\uB3D9\uD558\uAE30</span>\n        <input type=\"checkbox\" class=\"option_check_btn\" id=\"link\"/>\n    </li>\n    ");
-  lists.insertAdjacentHTML(position, item);
-} // handle click evevt
 
+/***/ }),
 
-lists.addEventListener("click", function (event) {
-  var element = event.target;
-  var elementId = element.attributes.id;
+/***/ "./assets/js/tagList.js":
+/*!******************************!*\
+  !*** ./assets/js/tagList.js ***!
+  \******************************/
+/*! exports provided: tagList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-  if (elementId == null) {
-    return;
-  }
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tagList", function() { return tagList; });
 
-  if (elementId.value == "checkBox") {
-    completeToDo(element);
-  } else if (elementId.value == "deleteBtn") {
-    removeToDo(element);
-  } else if (elementId.value == "link") {
-    checkOptions(element);
-  }
-}); // complete to do
+var study = {
+  color: "rgba(255, 107, 212, 1)"
+};
+var selfDevelopment = {
+  color: "rgba(1, 238, 167, 1)"
+};
+var hobby = {
+  color: "rgba(58, 166, 250, 1)"
+};
+var tagList = {
+  study: study,
+  selfDevelopment: selfDevelopment,
+  hobby: hobby
+};
 
-function completeToDo(element) {
-  // check box
-  element.classList.toggle(CHECK);
-  element.classList.toggle(UNCHECK); // 취소선
+/***/ }),
 
-  var toDoHeader = element.nextElementSibling;
-  toDoHeader.classList.toggle(LINE_THROUGH); // LIST update
+/***/ "./assets/scss/dailyPageStyles.css":
+/*!*****************************************!*\
+  !*** ./assets/scss/dailyPageStyles.css ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-  var list = element.parentNode.parentNode;
-  var listId = list.id;
-  var index = LIST.findIndex(function (element) {
-    return element.id == listId;
-  });
-  LIST[index].done = true;
-} // remove to do
-
-
-function removeToDo(element) {
-  var lists = element.parentNode.parentNode.parentNode;
-  var list = element.parentNode.parentNode;
-  var listId = list.id;
-  var index = LIST.findIndex(function (element) {
-    return element.id == listId;
-  }); // LIST update
-
-  LIST.splice(index, 1);
-  lists.removeChild(list);
-} // check options
-
-
-function checkOptions(element) {
-  var toDoList = element.parentNode;
-  var optionCheckBtn = toDoList.querySelector(".option_check_btn");
-  var toDoListHeader = toDoList.querySelector(".to-do_left_lists_main");
-  var options = toDoList.querySelector(".to-do_left_lists_options");
-  var position = "afterend";
-  var item = "\n    <form class=\"to-do_left_lists_options\">\n    <label for=\"index-color\" class=\"to-do_left_lists_options_color\">\uC0C9 \uC9C0\uC815</label>\n    <input type=\"color\" id=\"index-color\">\n    <div>\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC2DC\uC791\uC2DC\uAC04</label>\n        <input type=\"text\" class=\"to-do_left_lists_options_time\" onKeyup=\"inputTimeColon(this);\" placeholder=\"HH:MM\" maxlength=\"5\"/>\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC885\uB8CC\uC2DC\uAC04</label>\n        <input type=\"text\" class=\"to-do_left_lists_options_time\" onKeyup=\"inputTimeColon(this);\" placeholder=\"HH:MM\" maxlength=\"5\"/>\n    </div>\n    </form>\n    ";
-
-  if (optionCheckBtn.checked) {
-    toDoListHeader.insertAdjacentHTML(position, item);
-  } else {
-    options.parentNode.removeChild(options);
-  }
-} //     <progress value="22" max="100"></progress>
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -28180,7 +28139,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! @babel/polyfill */"./node_modules/@babel/polyfill/lib/index.js");
-module.exports = __webpack_require__(/*! C:\Users\ParkSeungyeon\project-1\assets\js\main.js */"./assets/js/main.js");
+module.exports = __webpack_require__(/*! C:\Users\se5ng\Desktop\test1029\project-1\assets\js\main.js */"./assets/js/main.js");
 
 
 /***/ })

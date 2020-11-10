@@ -1,4 +1,8 @@
 import "../scss/index.css";
 import "../scss/styles.scss";
+import "../scss/dailyPageStyles.css";
 import "bootstrap";
-import "./todopage";
+// import "./date";
+import "./planner";
+import "./setPlan";
+import "./tagList";

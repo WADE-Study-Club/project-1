@@ -1,0 +1,56 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Document
+  link(rel='stylesheet' href='/static/styles.css')
+.colorTagAdd
+  form(method="post" action='/dailyPage')
+    input(type='text' placeholder='tag name' name="tagName")
+    input(type="color" name="tagColor" value="black")
+    input(type="submit", value="ADD TAG")
+.daily
+  // <div class="date"></div>
+  .date
+    input.dateInput(type='date')
+    button.dateSubmitBtn &#xBCF4;&#xAE30;
+  .planner
+    .content
+      p#day1_1 &#xC870;&#xAE45;&amp;&#xBA85;&#xC0C1;
+      p#day1_2 &#xC544;&#xCE68;&#xC2DD;&#xC0AC;
+      p#day1_3 JS &#xACF5;&#xBD80;
+      p#day1_4 &#xC810;&#xC2EC;&#xC2DD;&#xC0AC;
+      p#day1_5 &#xC6F9; &#xC2A4;&#xD130;&#xB514; &#xBBF8;&#xD305;
+      p#day1_6
+        | &#xBBFC;&#xACBD;&#xC774;&#xB791; &#xCE74;&#xD398;
+        span.color-left
+        span.color-right
+      p#day1_7 &#xC800;&#xB141;&#xC2DD;&#xC0AC;
+    .colorbar
+      .whenMouseHover
+        span.mouseHoverBar
+        span.tooltip 07:10
+      ul
+        li#c1
+        li#c2
+        //
+          <li id=c3></li>
+          <li id=c4></li>
+          <li id=c5></li>
+          <li id=c6>
+          <span class="left"></span>
+          <span class="right"></span>
+          </li>
+          <li id=c7></li>
+      //
+        <span class="line" id="line1"></span>
+        <span class="line" id="line2"></span>
+  .timebar
+    ul
+  .report
+    .colorbar
+    .content
+
+script(src='/static/main.js')
+script(src='/static/colorbar.js')
+script(src='/static/timebar.js')

@@ -14,6 +14,8 @@ import dairyRouter from "./routers/dairyRouter"
 import weeklyRouter from "./routers/weeklyRouter"
 import monthlyRouter from "./routers/monthlyRouter"
 import todoRouter from "./routers/todoRouter"
+import dailyPageRouter from "./routers/dailyPageRouter"
+import setPlanRouter from "./routers/setPlanRouter"
 
 
 const app = express();
@@ -39,5 +41,9 @@ app.use(routes.week, weeklyRouter);
 app.use('/', dairyRouter);
 
 app.use(routes.todo, todoRouter);
+
+app.use(routes.dailyPage, dailyPageRouter);
+
+app.use(routes.setPlan, setPlanRouter);
 
 export default app;

@@ -2,14 +2,16 @@ const DAIRY = '/dairy';
 const WEEK = '/week';
 const MONTH = '/month';
 const TODO = '/todo';
-const TODOPAGE = '/todopage';
+const DAILYPAGE = '/dailyPage';
+const SETPLAN = '/setPlan';
 
 const routes = {
     dairy : DAIRY,
     week : WEEK,
     month : MONTH,
     todo : TODO,
-    todopage: TODOPAGE,
+    dailyPage : DAILYPAGE,
+    setPlan : SETPLAN
 }
 
 export default routes;
