@@ -47,6 +47,7 @@ function addToDo(toDo, id) {
     const position = "beforeend";
     const item = `
     <li class="to-do_left_lists" id="${id}">
+    <form method="post" action="/todo">
         <div class="to-do_left_lists_main">
             <span class="${UNCHECK} fa-check-square" id="checkBox">V</span>
             <span class="to-do_header" id="to-do-header">${toDo}</span>
@@ -54,6 +55,7 @@ function addToDo(toDo, id) {
         </div>
         <span class="to-do_left_lists_link">연동하기</span>
         <input type="checkbox" class="option_check_btn" id="link" name="option"/>
+    </form>
     </li>
     `;
     lists.insertAdjacentHTML(position, item);
@@ -96,13 +98,13 @@ function completeToDo(element){
 
 // remove to do
 function removeToDo(element){
-    const lists = element.parentNode.parentNode.parentNode;
-    const list = element.parentNode.parentNode;
+    const parentList = element.parentNode.parentNode.parentNode.parentNode;
+    const list = element.parentNode.parentNode.parentNode;
     const listId = list.id
     const index = LIST.findIndex(element => element.id === listId);
     // LIST update
     LIST.splice(index, 1);
-    lists.removeChild(list);
+    parentList.removeChild(list);
 }
 
 // check options
@@ -113,7 +115,7 @@ function checkOptions(element){
     const options = toDoList.querySelector(".to-do_left_lists_options");
     const position = "afterend";
     const item = `
-    <form class="to-do_left_lists_options" method="post" action="/todo">
+    <div class="to-do_left_lists_options">
     <label for="index-color" class="to-do_left_lists_options_color">색 지정</label>
     <input type="color" id="index-color" name="tagColor">
     <div>
@@ -122,7 +124,7 @@ function checkOptions(element){
         <label for="" class="to-do_left_lists_options_time-text">종료시간</label>
         <input type="time" name="finishTime" class="to-do_left_lists_options_time" id="time" />
     </div>
-    </form>
+    </div>
     `;
     if(optionCheckBtn.checked){
         toDoListHeader.insertAdjacentHTML(position, item);

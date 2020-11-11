@@ -164,7 +164,7 @@ function handleSubmit(event) {
 
 function addToDo(toDo, id) {
   var position = "beforeend";
-  var item = "\n    <li class=\"to-do_left_lists\" id=\"".concat(id, "\">\n        <div class=\"to-do_left_lists_main\">\n            <span class=\"").concat(UNCHECK, " fa-check-square\" id=\"checkBox\">V</span>\n            <span class=\"to-do_header\" id=\"to-do-header\">").concat(toDo, "</span>\n            <span class=\"fas fa-times\" id=\"deleteBtn\">X</span>\n        </div>\n        <span class=\"to-do_left_lists_link\">\uC5F0\uB3D9\uD558\uAE30</span>\n        <input type=\"checkbox\" class=\"option_check_btn\" id=\"link\" name=\"option\"/>\n    </li>\n    ");
+  var item = "\n    <li class=\"to-do_left_lists\" id=\"".concat(id, "\">\n    <form method=\"post\"\xA0action=\"/todo\">\n        <div class=\"to-do_left_lists_main\">\n            <span class=\"").concat(UNCHECK, " fa-check-square\" id=\"checkBox\">V</span>\n            <span class=\"to-do_header\" id=\"to-do-header\">").concat(toDo, "</span>\n            <span class=\"fas fa-times\" id=\"deleteBtn\">X</span>\n        </div>\n        <span class=\"to-do_left_lists_link\">\uC5F0\uB3D9\uD558\uAE30</span>\n        <input type=\"checkbox\" class=\"option_check_btn\" id=\"link\" name=\"option\"/>\n    </form>\n    </li>\n    ");
   lists.insertAdjacentHTML(position, item);
 } // handle click evevt
 
@@ -206,15 +206,15 @@ function completeToDo(element) {
 
 
 function removeToDo(element) {
-  var lists = element.parentNode.parentNode.parentNode;
-  var list = element.parentNode.parentNode;
+  var parentList = element.parentNode.parentNode.parentNode.parentNode;
+  var list = element.parentNode.parentNode.parentNode;
   var listId = list.id;
   var index = LIST.findIndex(function (element) {
     return element.id === listId;
   }); // LIST update
 
   LIST.splice(index, 1);
-  lists.removeChild(list);
+  parentList.removeChild(list);
 } // check options
 
 
@@ -224,7 +224,7 @@ function checkOptions(element) {
   var toDoListHeader = toDoList.querySelector(".to-do_left_lists_main");
   var options = toDoList.querySelector(".to-do_left_lists_options");
   var position = "afterend";
-  var item = "\n    <form class=\"to-do_left_lists_options\" method=\"post\"\xA0action=\"/todo\">\n    <label for=\"index-color\" class=\"to-do_left_lists_options_color\">\uC0C9 \uC9C0\uC815</label>\n    <input type=\"color\" id=\"index-color\" name=\"tagColor\">\n    <div>\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC2DC\uC791\uC2DC\uAC04</label>\n        <input type=\"time\" name=\"startTime\" class=\"to-do_left_lists_options_time\" id=\"time\" />\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC885\uB8CC\uC2DC\uAC04</label>\n        <input type=\"time\" name=\"finishTime\" class=\"to-do_left_lists_options_time\" id=\"time\" />\n    </div>\n    </form>\n    ";
+  var item = "\n    <div class=\"to-do_left_lists_options\">\n    <label for=\"index-color\" class=\"to-do_left_lists_options_color\">\uC0C9 \uC9C0\uC815</label>\n    <input type=\"color\" id=\"index-color\" name=\"tagColor\">\n    <div>\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC2DC\uC791\uC2DC\uAC04</label>\n        <input type=\"time\" name=\"startTime\" class=\"to-do_left_lists_options_time\" id=\"time\" />\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC885\uB8CC\uC2DC\uAC04</label>\n        <input type=\"time\" name=\"finishTime\" class=\"to-do_left_lists_options_time\" id=\"time\" />\n    </div>\n    </div>\n    ";
 
   if (optionCheckBtn.checked) {
     toDoListHeader.insertAdjacentHTML(position, item);
