@@ -103,6 +103,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _todopage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todopage */ "./assets/js/todopage.js");
 /* harmony import */ var _todopage__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_todopage__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _scss_todopage_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../scss/todopage.css */ "./assets/scss/todopage.css");
+/* harmony import */ var _scss_todopage_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_scss_todopage_css__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -117,10 +120,17 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// select the element
+// select the to do element
 var lists = document.querySelector('.to-do_container');
 var toDoForm = document.querySelector('.to-do_left_input');
-var toDoInput = document.querySelector('.to-do_left_input_text'); // classes names
+var toDoInput = document.querySelector('.to-do_left_input_text'); // select the timer element
+
+var timerHeader = document.querySelector('.to-do_right_header');
+var minutesLabel = document.querySelector("#minutes");
+var secondsLabel = document.querySelector("#seconds");
+var totalSeconds = 0;
+var timerStartBtn = document.querySelector('.to-do_right_timer_start');
+var timerFinishBtn = document.querySelector('.to-do_right_timer_finish'); // classes names
 
 var CHECK = "fas";
 var UNCHECK = "far";
@@ -130,7 +140,7 @@ var LIST = []; // add an item to the list(click button or enter key)
 
 toDoForm.addEventListener("submit", handleSubmit);
 toDoInput.addEventListener("keyup", function (event) {
-  if (event.keycode == 13) {
+  if (event.keycode === 13) {
     handleSubmit(event);
   }
 });
@@ -154,7 +164,7 @@ function handleSubmit(event) {
 
 function addToDo(toDo, id) {
   var position = "beforeend";
-  var item = "\n    <li class=\"to-do_left_lists\" id=\"".concat(id, "\">\n        <div class=\"to-do_left_lists_main\">\n            <i class=\"").concat(UNCHECK, " fa-check-square\" id=\"checkBox\"></i>\n            <span class=\"to-do_header\">").concat(toDo, "</span>\n            <i class=\"fas fa-times\" id=\"deleteBtn\"></i>\n        </div>\n        <span class=\"to-do_left_lists_link\">\uC5F0\uB3D9\uD558\uAE30</span>\n        <input type=\"checkbox\" class=\"option_check_btn\" id=\"link\"/>\n    </li>\n    ");
+  var item = "\n    <li class=\"to-do_left_lists\" id=\"".concat(id, "\">\n        <div class=\"to-do_left_lists_main\">\n            <span class=\"").concat(UNCHECK, " fa-check-square\" id=\"checkBox\">V</span>\n            <span class=\"to-do_header\" id=\"to-do-header\">").concat(toDo, "</span>\n            <span class=\"fas fa-times\" id=\"deleteBtn\">X</span>\n        </div>\n        <span class=\"to-do_left_lists_link\">\uC5F0\uB3D9\uD558\uAE30</span>\n        <input type=\"checkbox\" class=\"option_check_btn\" id=\"link\" name=\"option\"/>\n    </li>\n    ");
   lists.insertAdjacentHTML(position, item);
 } // handle click evevt
 
@@ -163,16 +173,18 @@ lists.addEventListener("click", function (event) {
   var element = event.target;
   var elementId = element.attributes.id;
 
-  if (elementId == null) {
+  if (elementId === null) {
     return;
   }
 
-  if (elementId.value == "checkBox") {
+  if (elementId.value === "checkBox") {
     completeToDo(element);
-  } else if (elementId.value == "deleteBtn") {
+  } else if (elementId.value === "deleteBtn") {
     removeToDo(element);
-  } else if (elementId.value == "link") {
+  } else if (elementId.value === "link") {
     checkOptions(element);
+  } else if (elementId.value === "to-do-header") {
+    showTimer(element);
   }
 }); // complete to do
 
@@ -187,7 +199,7 @@ function completeToDo(element) {
   var list = element.parentNode.parentNode;
   var listId = list.id;
   var index = LIST.findIndex(function (element) {
-    return element.id == listId;
+    return element.id === listId;
   });
   LIST[index].done = true;
 } // remove to do
@@ -198,7 +210,7 @@ function removeToDo(element) {
   var list = element.parentNode.parentNode;
   var listId = list.id;
   var index = LIST.findIndex(function (element) {
-    return element.id == listId;
+    return element.id === listId;
   }); // LIST update
 
   LIST.splice(index, 1);
@@ -212,14 +224,46 @@ function checkOptions(element) {
   var toDoListHeader = toDoList.querySelector(".to-do_left_lists_main");
   var options = toDoList.querySelector(".to-do_left_lists_options");
   var position = "afterend";
-  var item = "\n    <form class=\"to-do_left_lists_options\">\n    <label for=\"index-color\" class=\"to-do_left_lists_options_color\">\uC0C9 \uC9C0\uC815</label>\n    <input type=\"color\" id=\"index-color\">\n    <div>\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC2DC\uC791\uC2DC\uAC04</label>\n        <input type=\"text\" class=\"to-do_left_lists_options_time\" onKeyup=\"inputTimeColon(this);\" placeholder=\"HH:MM\" maxlength=\"5\"/>\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC885\uB8CC\uC2DC\uAC04</label>\n        <input type=\"text\" class=\"to-do_left_lists_options_time\" onKeyup=\"inputTimeColon(this);\" placeholder=\"HH:MM\" maxlength=\"5\"/>\n    </div>\n    </form>\n    ";
+  var item = "\n    <form class=\"to-do_left_lists_options\" method=\"post\"\xA0action=\"/todo\">\n    <label for=\"index-color\" class=\"to-do_left_lists_options_color\">\uC0C9 \uC9C0\uC815</label>\n    <input type=\"color\" id=\"index-color\" name=\"color\">\n    <div>\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC2DC\uC791\uC2DC\uAC04</label>\n        <input type=\"time\" name=\"time\" class=\"to-do_left_lists_options_time\" id=\"time\" />\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC885\uB8CC\uC2DC\uAC04</label>\n        <input type=\"time\" name=\"time\" class=\"to-do_left_lists_options_time\" id=\"time\" />\n    </div>\n    </form>\n    ";
 
   if (optionCheckBtn.checked) {
     toDoListHeader.insertAdjacentHTML(position, item);
   } else {
     options.parentNode.removeChild(options);
   }
-} //     <progress value="22" max="100"></progress>
+}
+
+var myInterval;
+
+function showTimer(element) {
+  timerHeader.innerText = "".concat(element.textContent);
+  secondsLabel.innerHTML = "00";
+  minutesLabel.innerHTML = "00:";
+}
+
+timerStartBtn.addEventListener("click", function (event) {
+  myInterval = setInterval(setTime, 1000);
+});
+
+function setTime() {
+  ++totalSeconds;
+  secondsLabel.innerHTML = pad(totalSeconds % 60);
+  minutesLabel.innerHTML = "".concat(pad(parseInt(totalSeconds / 60)), ":");
+}
+
+function pad(time) {
+  var timeString = time + "";
+
+  if (timeString.length < 2) {
+    return "0" + timeString;
+  } else {
+    return timeString;
+  }
+}
+
+timerFinishBtn.addEventListener("click", function (event) {
+  clearInterval(myInterval);
+});
 
 /***/ }),
 
@@ -238,6 +282,17 @@ function checkOptions(element) {
 /*!*********************************!*\
   !*** ./assets/scss/styles.scss ***!
   \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./assets/scss/todopage.css":
+/*!**********************************!*\
+  !*** ./assets/scss/todopage.css ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 

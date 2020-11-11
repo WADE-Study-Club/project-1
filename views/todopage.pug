@@ -1,26 +1,19 @@
-doctype html
-head
-  meta(charset='UTF-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  title Document
-  link(rel='stylesheet' href='/index.css')
-  script(src='https://kit.fontawesome.com/57286537d3.js' crossorigin='anonymous')
-// 콘텐츠 전체 감싸기
-section.to-do
-  // 왼쪽 투두 리스트 파트
-  article.to-do_left
-    // 투두 인풋 파트
-    form.to-do_left_input
-      button.to-do_left_input_btn
-        i.far.fa-plus-square
-      input.to-do_left_input_text(type='text')
-    ul.to-do_container
-  // 오른쪽 타이머 표시 파트
-  article.to-do_right
-    h1.to-do_right_header JS study;
-    .to-do_right_timer
-      span.to-do_right_timer_display-time
-        | 00:00
-    div
-      button.to-do_right_timer_start START
-      button.to-do_right_timer_finish FINISH
+extends layouts/main
+
+block content
+  section.to-do
+    article.to-do_left
+      form.to-do_left_input
+        button.to-do_left_input_btn
+          span +
+        input.to-do_left_input_text(type='text')
+      ul.to-do_container
+    article.to-do_right
+      h1.to-do_right_header
+      .to-do_right_timer
+        span.to-do_right_timer_display-time
+          label#minutes 00:
+          label#seconds 00
+      div
+        button.to-do_right_timer_start START
+        button.to-do_right_timer_finish FINISH

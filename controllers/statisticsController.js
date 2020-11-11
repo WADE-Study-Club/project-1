@@ -23,6 +23,10 @@ export const getTodos = (req,res) => {
     res.render('todos',{ pageTitle : 'Todos'})
 }
 
+export const todopage = (req,res) => {
+    res.render('todopage',{ pageTitle : 'Todopage'})
+}
+
 export const postTodos = async (req,res) => {
     const { body : { title } } = req;
 

@@ -56,5 +56,143 @@ body {
 /* --------------------- */
 body {
   background-color: #fff; }
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}.to-do {
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center; }
+
+.to-do_left {
+  height: 70%;
+  padding: 30px;
+  border-radius: 5%;
+  background-color: #c9cdd2; }
+
+.to-do_left_input {
+  display: flex;
+  margin-bottom: 10px; }
+
+.to-do_left_input_btn {
+  background-color: transparent;
+  border: none; }
+
+.to-do_left_input_text {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: solid black 1px; }
+
+.to-do_left_lists {
+  padding: 10px;
+  background-color: #e8ebed;
+  border-radius: 10px; }
+
+.to-do_left_lists_main {
+  display: flex;
+  justify-content: space-between; }
+
+.to-do_left_lists_main_delete {
+  background-color: transparent;
+  border: none; }
+
+.to-do_left_lists_link {
+  font-size: 0.8em; }
+
+.to-do_left_lists_options {
+  display: flex;
+  align-items: center; }
+
+.to-do_left_lists_options_color {
+  font-size: 0.8em;
+  margin-left: 5px; }
+
+#index-color {
+  background-color: transparent;
+  border: none; }
+
+.to-do_left_lists_options_time-text {
+  font-size: 0.8em; }
+
+.to-do_left_lists_options_time {
+  width: 70px; }
+
+.to-do_right {
+  width: 30%;
+  height: 70%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 5%;
+  background-color: #c9cdd2; }
+
+.to-do_right_timer {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-color: #72787f;
+  position: relative; }
+
+.to-do_right_timer > span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4em; }
+
+.lineThrough {
+  text-decoration: line-through;
+  color: #ccc; }
+
+.to-do_right_timer_display-time {
+  display: flex; }
 
 /*# sourceMappingURL=styles.css.map*/
