@@ -68,7 +68,7 @@ lists.addEventListener("click", (event) => {
         return;
     }
 
-    if( elementId.value === "checkBox"){
+    if(elementId.value === "checkBox"){
         completeToDo(element);
     }else if(elementId.value === "deleteBtn"){
         removeToDo(element);
@@ -148,8 +148,6 @@ function setTime() {
   ++totalSeconds;
   secondsLabel.innerHTML = pad(totalSeconds % 60);
   minutesLabel.innerHTML = `${pad(parseInt(totalSeconds / 60))}:`;
-
-  
 }
 
 function pad(time) {
