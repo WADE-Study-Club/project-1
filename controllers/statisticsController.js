@@ -19,12 +19,12 @@ export const weekly = (req,res) => {
     res.render('weekly',{ pageTitle : 'Weekly'})
 }
 
-export const getTodos = (req,res) => {
-    res.render('todos',{ pageTitle : 'Todos'})
-}
-
 export const todopage = (req,res) => {
     res.render('todopage',{ pageTitle : 'Todopage'})
+}
+
+export const getTodos = (req,res) => {
+    res.render('todos',{ pageTitle : 'Todos'})
 }
 
 export const postTodos = async (req,res) => {

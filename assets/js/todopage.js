@@ -115,12 +115,12 @@ function checkOptions(element){
     const item = `
     <form class="to-do_left_lists_options" method="post" action="/todo">
     <label for="index-color" class="to-do_left_lists_options_color">색 지정</label>
-    <input type="color" id="index-color" name="color">
+    <input type="color" id="index-color" name="tagColor">
     <div>
         <label for="" class="to-do_left_lists_options_time-text">시작시간</label>
-        <input type="time" name="time" class="to-do_left_lists_options_time" id="time" />
+        <input type="time" name="startTime" class="to-do_left_lists_options_time" id="time" />
         <label for="" class="to-do_left_lists_options_time-text">종료시간</label>
-        <input type="time" name="time" class="to-do_left_lists_options_time" id="time" />
+        <input type="time" name="finishTime" class="to-do_left_lists_options_time" id="time" />
     </div>
     </form>
     `;

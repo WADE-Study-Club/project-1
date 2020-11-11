@@ -224,7 +224,7 @@ function checkOptions(element) {
   var toDoListHeader = toDoList.querySelector(".to-do_left_lists_main");
   var options = toDoList.querySelector(".to-do_left_lists_options");
   var position = "afterend";
-  var item = "\n    <form class=\"to-do_left_lists_options\" method=\"post\"\xA0action=\"/todo\">\n    <label for=\"index-color\" class=\"to-do_left_lists_options_color\">\uC0C9 \uC9C0\uC815</label>\n    <input type=\"color\" id=\"index-color\" name=\"color\">\n    <div>\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC2DC\uC791\uC2DC\uAC04</label>\n        <input type=\"time\" name=\"time\" class=\"to-do_left_lists_options_time\" id=\"time\" />\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC885\uB8CC\uC2DC\uAC04</label>\n        <input type=\"time\" name=\"time\" class=\"to-do_left_lists_options_time\" id=\"time\" />\n    </div>\n    </form>\n    ";
+  var item = "\n    <form class=\"to-do_left_lists_options\" method=\"post\"\xA0action=\"/todo\">\n    <label for=\"index-color\" class=\"to-do_left_lists_options_color\">\uC0C9 \uC9C0\uC815</label>\n    <input type=\"color\" id=\"index-color\" name=\"tagColor\">\n    <div>\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC2DC\uC791\uC2DC\uAC04</label>\n        <input type=\"time\" name=\"startTime\" class=\"to-do_left_lists_options_time\" id=\"time\" />\n        <label for=\"\" class=\"to-do_left_lists_options_time-text\">\uC885\uB8CC\uC2DC\uAC04</label>\n        <input type=\"time\" name=\"finishTime\" class=\"to-do_left_lists_options_time\" id=\"time\" />\n    </div>\n    </form>\n    ";
 
   if (optionCheckBtn.checked) {
     toDoListHeader.insertAdjacentHTML(position, item);
