@@ -47,7 +47,7 @@ function addToDo(toDo, id) {
     const position = "beforeend";
     const item = `
     <li class="to-do_left_lists" id="${id}">
-    <form method="post" action="/todo">
+    <form method="post" action="/">
         <div class="to-do_left_lists_main">
             <span class="${UNCHECK} fa-check-square" id="checkBox">V</span>
             <span class="to-do_header" id="to-do-header">${toDo}</span>
@@ -66,7 +66,7 @@ lists.addEventListener("click", (event) => {
     const element = event.target;
     const elementId = element.attributes.id;
 
-    if (elementId === null){
+    if (elementId === undefined){
         return;
     }
 
@@ -90,10 +90,9 @@ function completeToDo(element){
     const toDoHeader = element.nextElementSibling;
     toDoHeader.classList.toggle(LINE_THROUGH);
     // LIST update
-    const list = element.parentNode.parentNode;
-    const listId = list.id
-    const index = LIST.findIndex(element => element.id === listId);
-    LIST[index].done = true;
+    // const list = element.parentNode.parentNode;
+    // const listId = list.id
+    // const index = LIST.findIndex(element => element.id === listId);
 }
 
 // remove to do

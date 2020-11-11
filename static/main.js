@@ -164,7 +164,7 @@ function handleSubmit(event) {
 
 function addToDo(toDo, id) {
   var position = "beforeend";
-  var item = "\n    <li class=\"to-do_left_lists\" id=\"".concat(id, "\">\n    <form method=\"post\"\xA0action=\"/todo\">\n        <div class=\"to-do_left_lists_main\">\n            <span class=\"").concat(UNCHECK, " fa-check-square\" id=\"checkBox\">V</span>\n            <span class=\"to-do_header\" id=\"to-do-header\">").concat(toDo, "</span>\n            <span class=\"fas fa-times\" id=\"deleteBtn\">X</span>\n        </div>\n        <span class=\"to-do_left_lists_link\">\uC5F0\uB3D9\uD558\uAE30</span>\n        <input type=\"checkbox\" class=\"option_check_btn\" id=\"link\" name=\"option\"/>\n    </form>\n    </li>\n    ");
+  var item = "\n    <li class=\"to-do_left_lists\" id=\"".concat(id, "\">\n    <form method=\"post\"\xA0action=\"/\">\n        <div class=\"to-do_left_lists_main\">\n            <span class=\"").concat(UNCHECK, " fa-check-square\" id=\"checkBox\">V</span>\n            <span class=\"to-do_header\" id=\"to-do-header\">").concat(toDo, "</span>\n            <span class=\"fas fa-times\" id=\"deleteBtn\">X</span>\n        </div>\n        <span class=\"to-do_left_lists_link\">\uC5F0\uB3D9\uD558\uAE30</span>\n        <input type=\"checkbox\" class=\"option_check_btn\" id=\"link\" name=\"option\"/>\n    </form>\n    </li>\n    ");
   lists.insertAdjacentHTML(position, item);
 } // handle click evevt
 
@@ -173,7 +173,7 @@ lists.addEventListener("click", function (event) {
   var element = event.target;
   var elementId = element.attributes.id;
 
-  if (elementId === null) {
+  if (elementId === undefined) {
     return;
   }
 
@@ -195,13 +195,9 @@ function completeToDo(element) {
 
   var toDoHeader = element.nextElementSibling;
   toDoHeader.classList.toggle(LINE_THROUGH); // LIST update
-
-  var list = element.parentNode.parentNode;
-  var listId = list.id;
-  var index = LIST.findIndex(function (element) {
-    return element.id === listId;
-  });
-  LIST[index].done = true;
+  // const list = element.parentNode.parentNode;
+  // const listId = list.id
+  // const index = LIST.findIndex(element => element.id === listId);
 } // remove to do
 
 
